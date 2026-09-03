@@ -13,12 +13,12 @@ function App() {
   const [activeIncidentId, setActiveIncidentId] = useState<string | null>(null);
 
   const fetchData = () => {
-    fetch('http://localhost:8000/api/overview')
+    fetch(`${import.meta.env.VITE_API_URL}/api/overview`)
       .then(res => res.json())
       .then(data => setMetrics(data.metrics))
       .catch(err => console.error(err));
       
-    fetch('http://localhost:8000/api/incidents')
+    fetch(`${import.meta.env.VITE_API_URL}/api/incidents`)
       .then(res => res.json())
       .then(data => setIncidents(data))
       .catch(err => console.error(err));
@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   const handleRunCorrelation = () => {
-    fetch('http://localhost:8000/api/demo/run-correlation', { method: 'POST' })
+    fetch(`${import.meta.env.VITE_API_URL}/api/demo/run-correlation`, { method: 'POST' })
       .then(() => fetchData());
   };
 

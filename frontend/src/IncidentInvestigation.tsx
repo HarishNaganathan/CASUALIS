@@ -9,7 +9,7 @@ function IncidentInvestigation({ incidentId, onBack }: { incidentId: string, onB
   const [responseStatus, setResponseStatus] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/incidents/${incidentId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/incidents/${incidentId}`)
       .then(res => res.json())
       .then(data => {
         setIncident(data);
@@ -19,7 +19,7 @@ function IncidentInvestigation({ incidentId, onBack }: { incidentId: string, onB
   }, [incidentId]);
 
   const handleSimulateResponse = () => {
-    fetch(`http://localhost:8000/api/incidents/${incidentId}/simulate-response`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/incidents/${incidentId}/simulate-response`, {
       method: 'POST'
     })
     .then(res => res.json())
